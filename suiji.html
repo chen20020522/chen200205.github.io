@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字旅程</title>
+    <style>
+        /* 全局样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #000000, #222222); /* 深色渐变背景 */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* 隐藏超出页面的内容 */
+            animation: bgAnimation 10s linear infinite alternate; /* 背景动画 */
+        }
+
+        /* 按钮样式 */
+        button#showTextBtn {
+            background-color: #00FFD1; /* 亮眼的按钮颜色 */
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px;
+            box-shadow: 0 0 10px #00FFD1, 0 0 20px #00FFD1; /* 发光效果的阴影 */
+            transition: all 0.3s ease-in-out; /* 过渡效果 */
+            animation: pulse 2s infinite ease-in-out; /* 按钮闪烁动画 */
+        }
+
+        button#showTextBtn:hover {
+            background-color: #00E0B0; /* 鼠标悬停时颜色变化 */
+            box-shadow: 0 0 15px #00E0B0, 0 0 30px #00E0B0; /* 悬停时发光增强 */
+            transform: translateY(-3px); /* 按钮上移一点 */
+        }
+
+        /* 文字显示区域样式 */
+        #textDisplay {
+            width: 80%;
+            text-align: center;
+            font-size: 24px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* 带有透明感的边框 */
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 阴影效果 */
+            animation: fadeInUp 1s ease-in-out; /* 文字淡入动画 */
+            opacity: 0; /* 初始为透明 */
+            visibility: hidden; /* 初始不可见 */
+        }
+
+        /* 背景动画关键帧 */
+        @keyframes bgAnimation {
+            0% {
+                background-position: left top;
+            }
+
+            100% {
+                background-position: right bottom;
+            }
+        }
+
+        /* 按钮闪烁动画关键帧 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 文字淡入动画关键帧 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button id="showTextBtn">开始您的文字旅程</button>
+    <div id="textDisplay"></div>
+
+    <script>
+        // 定义一些文字内容的数组
+        const texts = [
+            "这是第一段随机文字，仿佛来自星际的神秘电波",
+            "这里是另外一段有意思的文字呀，穿梭在虚拟与现实之间",
+            "还有这段文字也可以被随机展示出来呢，开启未知世界的大门",
+            "黑夜给了我黑色的眼睛，而我却用它寻找光明",
+            "明山接青雨，欢迎你小锦！"
+
+        ];
+
+        const showTextBtn = document.getElementById('showTextBtn');
+        const textDisplay = document.getElementById('textDisplay');
+
+        showTextBtn.addEventListener('click', function () {
+            // 生成一个随机索引
+            const randomIndex = Math.floor(Math.random() * texts.length);
+            // 获取对应索引的文字
+            const randomText = texts[randomIndex];
+            textDisplay.textContent = randomText;
+            textDisplay.style.visibility = 'visible'; // 显示文字显示区域
+            textDisplay.style.opacity = '1'; // 设置文字显示区域可见度为完全可见
+
+            // 延迟一段时间后隐藏文字显示区域（这里延迟3秒，可根据需要调整）
+            setTimeout(() => {
+                textDisplay.style.visibility = 'hidden';
+                textDisplay.style.opacity = '0';
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>
