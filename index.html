@@ -1,15 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" width="device-width" initial-scale="1.0">
     <title>陈小帅专属网站</title>
+    <style>
+        /* 整体页面背景设置为太空的深色渐变 */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #000000, #0f0f39);
+            font-family: 'Arial', sans-serif; /* 设置字体 */
+            color: #ffffff; /* 文字颜色设为白色 */
+            overflow: hidden; /* 隐藏超出页面部分，避免滚动条影响视觉效果 */
+            perspective: 1000px; /* 开启3D透视效果，营造空间感 */
+            animation: backgroundAnimation 30s linear infinite; /* 背景渐变动画 */
+        }
+
+        /* 背景渐变动画关键帧，模拟宇宙中光线流动的效果 */
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h3 {
+            text-align: center; /* 标题居中 */
+            font-size: 36px; /* 增大标题字体 */
+            margin-top: 50px; /* 标题距顶部距离 */
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff; /* 添加蓝色发光阴影，营造科幻感 */
+            animation: titleAnimation 3s ease-in-out infinite alternate; /* 标题闪烁动画 */
+        }
+
+        /* 标题闪烁动画关键帧 */
+        @keyframes titleAnimation {
+            0% {
+                text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #00bfff, 0 0 40px #00bfff;
+            }
+        }
+
+        p {
+            text-align: center; /* 段落文字居中 */
+            font-size: 20px; /* 设置段落文字大小 */
+            margin-bottom: 30px; /* 段落距下方距离 */
+            opacity: 0.8; /* 适当设置透明度，增加层次感 */
+            animation: paragraphAnimation 5s ease-in-out infinite alternate; /* 段落文字动画 */
+        }
+
+        /* 段落文字动画关键帧，模拟文字闪烁效果 */
+        @keyframes paragraphAnimation {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        a {
+            display: block; /* 让链接占一行，方便布局 */
+            text-align: center; /* 链接文字居中 */
+            text-decoration: none; /* 去除默认下划线 */
+            color: #00bfff; /* 链接文字设为浅蓝色 */
+            font-size: 24px; /* 链接文字大小 */
+            margin: 20px auto; /* 上下外边距，左右自动居中 */
+            padding: 10px 20px; /* 内边距 */
+            border: 2px solid #00bfff; /* 边框 */
+            border-radius: 10px; /* 圆角边框 */
+            transition: all 0.3s ease; /* 添加过渡效果，让交互更平滑 */
+            position: relative; /* 相对定位，方便后续做伪元素的绝对定位 */
+            overflow: hidden; /* 隐藏超出链接部分的内容 */
+            z-index: 1; /* 设置层级，确保按钮在其他效果之上 */
+            animation: buttonAnimation 3s ease-in-out infinite alternate; /* 按钮动画 */
+        }
+
+        /* 按钮动画关键帧，模拟按钮的发光和缩放效果 */
+        @keyframes buttonAnimation {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px #00bfff;
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px #00bfff;
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px #00bfff;
+            }
+        }
+
+        a::before {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 191, 255, 0.2), rgba(0, 191, 255, 0));
+            z-index: -1;
+            transform: skewY(10deg);
+            animation: buttonGlowAnimation 3s linear infinite; /* 按钮发光动画 */
+        }
+
+        /* 按钮发光动画关键帧，营造光线流动的效果 */
+        @keyframes buttonGlowAnimation {
+            0% {
+                top: -100%;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        a:hover {
+            background-color: rgba(0, 191, 255, 0.2); /* 鼠标悬停时背景变色 */
+            box-shadow: 0 0 10px #00bfff; /* 鼠标悬停时添加发光阴影 */
+        }
+
+        /* 添加一些闪烁的星星元素，模拟宇宙中的星星 */
+       .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: starAnimation 10s linear infinite; /* 星星闪烁动画 */
+            opacity: 0.5;
+        }
+
+        /* 星星闪烁动画关键帧，让星星有随机闪烁和移动的效果 */
+        @keyframes starAnimation {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(500px) translateY(500px);
+                opacity: 0.5;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
     <h3>欢迎来到陈小帅的网站</h3>
     <p>美女小姐姐请留下，其他不送！</p>
-   <a href="123.html">个人介绍哦！</a>
+    <a href="123.html">个人介绍哦！</a>
     <a href="suiji.html">来个文字旅程吧！</a>
-    <img src="./iamges/5.jpg" alt="田园生活！">;
+    <script>
+        window.onload = function () {
+            const body = document.body;
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                star.style.left = x + 'px';
+                star.style.top = y + 'px';
+                body.appendChild(star);
+            }
+        };
+    </script>
 </body>
+
 </html>
