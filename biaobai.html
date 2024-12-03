@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表白爱心</title>
+    <style>
+        /* 整体页面背景设为黑色，营造浪漫氛围 */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 爱心的基础样式 */
+       .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            transform: rotate(-45deg);
+            background-color: red;
+            animation: heartBeat 1s ease-in-out infinite alternate;
+            box-shadow: 0 0 20px red, 0 0 40px red, 0 0 60px red;
+            /* 发光效果 */
+        }
+
+        /* 爱心的上半部分（通过伪元素实现） */
+       .heart::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        /* 爱心的下半部分（通过伪元素实现） */
+       .heart::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+        /* 爱心跳动的动画关键帧 */
+        @keyframes heartBeat {
+            0% {
+                transform: rotate(-45deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(-45deg) scale(1.2);
+            }
+
+            100% {
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        /* 文字表白样式 */
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-top: 30px;
+            text-align: center;
+            animation: textShow 2s ease-in-out 1s forwards;
+            opacity: 0;
+        }
+
+        /* 文字显示动画关键帧 */
+        @keyframes textShow {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heart"></div>
+    <h1>小锦同学，好好爱自己哦！</h1>
+</body>
+
+</html>
