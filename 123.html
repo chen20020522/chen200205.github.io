@@ -1,20 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>解决问题的方法</title>
+    <title>陈小帅的主页</title>
     <style>
-        p{
-             width:450px;
-            height:300px;
-            background-color:aqua;
-            background-image: url("./iamges/5.jpg");
+        /* 全局样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://source.unsplash.com/random/1920x1080?abstract') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            animation: bgAnimation 10s linear infinite alternate;
+            position: relative;
+        }
+
+        /* 背景动画 */
+        @keyframes bgAnimation {
+            0% {
+                filter: brightness(1);
+            }
+
+            100% {
+                filter: brightness(1.2);
+            }
+        }
+
+        /* 遮罩层，用于调整背景颜色及透明度 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
+            font-size: 60px;
+            text-align: center;
+            margin-bottom: 30px;
+            z-index: 1;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        /* 主人信息区域样式 */
+      .info {
+            color: white;
+            text-align: center;
+            width: 60%;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* 按钮样式 */
+        button {
+            background-color: #00BFFF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+        button:hover {
+            background-color: #009ACD;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 动画关键帧 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body>
-    <h3>请求答复！</h3>
-    <p>黑夜给了我黑色的眼睛，我却用他寻找光明！</p>
+    <h1>陈小帅的数字空间</h1>
+    <div class="info">
+        <p>大家好，我是陈小帅，一名怀揣无限热情与创造力的探索者。热爱前沿科技，痴迷于互联网世界的奇妙变化，同时也是个文艺青年，钟情于在文字与影像间捕捉生活的美好瞬间。欢迎来到我的小天地，一同开启新奇之旅！</p>
+    </div>
+    <div>
+        <button>了解更多</button>
+        <button>联系我</button>
+    </div>
 </body>
+
 </html>
