@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" width="device-width" initial-scale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- 设置viewport，禁止用户缩放，确保页面布局稳定 -->
     <title>陈小帅专属网站</title>
     <style>
         /* 整体页面背景设置为太空的深色渐变 */
@@ -16,6 +17,12 @@
             overflow: hidden; /* 隐藏超出页面部分，避免滚动条影响视觉效果 */
             perspective: 1000px; /* 开启3D透视效果，营造空间感 */
             animation: backgroundAnimation 30s linear infinite; /* 背景渐变动画 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            /* 让页面内容在手机端垂直居中显示 */
         }
 
         /* 背景渐变动画关键帧，模拟宇宙中光线流动的效果 */
@@ -90,6 +97,8 @@
             overflow: hidden; /* 隐藏超出链接部分的内容 */
             z-index: 1; /* 设置层级，确保按钮在其他效果之上 */
             animation: buttonAnimation 3s ease-in-out infinite alternate; /* 按钮动画 */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            /* 添加淡淡的阴影，让按钮更立体 */
         }
 
         /* 按钮动画关键帧，模拟按钮的发光和缩放效果 */
@@ -137,10 +146,12 @@
         a:hover {
             background-color: rgba(0, 191, 255, 0.2); /* 鼠标悬停时背景变色 */
             box-shadow: 0 0 10px #00bfff; /* 鼠标悬停时添加发光阴影 */
+            transform: translateY(-3px);
+            /* 鼠标悬停时按钮向上微移，增加交互感 */
         }
 
         /* 添加一些闪烁的星星元素，模拟宇宙中的星星 */
-       .star {
+      .star {
             position: absolute;
             width: 2px;
             height: 2px;
@@ -167,26 +178,145 @@
             }
         }
 
+        /* 新增流星元素样式及动画 */
+      .meteor {
+            position: absolute;
+            width: 10px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            transform: rotate(45deg);
+            animation: meteorAnimation 5s linear infinite;
+            opacity: 0.8;
+        }
+
+        /* 流星动画关键帧，模拟流星划过天空的效果 */
+        @keyframes meteorAnimation {
+            0% {
+                top: -100px;
+                left: -100px;
+            }
+
+            100% {
+                top: 110vh;
+                left: 110vw;
+            }
+        }
+
+        /* 新增星云元素样式及动画 */
+      .nebula {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at center, rgba(128, 0, 128, 0.5), rgba(0, 0, 0, 0));
+            border-radius: 50%;
+            animation: nebulaAnimation 20s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        /* 星云动画关键帧，模拟星云缓慢变化和移动的效果 */
+        @keyframes nebulaAnimation {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            50% {
+                transform: scale(1.2) translate(50px, -50px);
+            }
+
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+        }
+
+        /* 点击按钮后出现的特效元素样式 */
+      .click-effect {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at center, rgba(0, 191, 255, 0.8), rgba(0, 191, 255, 0));
+            border-radius: 50%;
+            animation: clickEffectAnimation 1s ease-out;
+            opacity: 0;
+            pointer-events: none;
+            /* 避免特效元素影响后续交互 */
+        }
+
+        /* 点击按钮特效动画关键帧，模拟发光扩散后消失的效果 */
+        @keyframes clickEffectAnimation {
+            0% {
+                transform: scale(0);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
     <h3>欢迎来到陈小帅的网站</h3>
     <p>美女小姐姐请留下，其他不送！</p>
-    <a href="123.html">个人介绍哦！</a>
-    <a href="suiji.html">来个文字旅程吧！</a>
+    <a href="123.html" class="button-link">个人介绍哦！</a>
+    <a href="suiji.html" class="button-link">来个文字旅程吧！</a>
     <script>
         window.onload = function () {
             const body = document.body;
+            // 创建并添加星星元素
             for (let i = 0; i < 100; i++) {
                 const star = document.createElement('div');
-                star.className = 'star';
+                star.className ='star';
                 const x = Math.random() * window.innerWidth;
                 const y = Math.random() * window.innerHeight;
                 star.style.left = x + 'px';
                 star.style.top = y + 'px';
                 body.appendChild(star);
             }
+
+            // 创建并添加流星元素
+            for (let i = 0; i < 5; i++) {
+                const meteor = document.createElement('div');
+                meteor.className ='meteor';
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                meteor.style.left = x + 'px';
+                meteor.style.top = y + 'px';
+                body.appendChild(meteor);
+            }
+
+            // 创建并添加星云元素
+            for (let i = 0; i < 3; i++) {
+                const nebula = document.createElement('div');
+                nebula.className = 'nebula';
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                nebula.style.left = x + 'px';
+                nebula.style.top = y + 'px';
+                body.appendChild(nebula);
+            }
+
+            // 为按钮添加点击特效交互
+            const links = document.querySelectorAll('.button-link');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const clickEffect = document.createElement('div');
+                    clickEffect.className = 'click-effect';
+                    clickEffect.style.left = e.pageX + 'px';
+                    clickEffect.style.top = e.pageY + 'px';
+                    body.appendChild(clickEffect);
+                    setTimeout(() => {
+                        clickEffect.remove();
+                    }, 1000);
+                });
+            });
         };
     </script>
 </body>
