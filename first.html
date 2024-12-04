@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <style>
+        /* 整体页面背景设置为黑色，营造科幻氛围 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            animation: fadeIn 1s ease-in-out;
+            position: relative;
+            overflow: hidden; /* 防止背景元素超出页面显示 */
+        }
+
+        /* 添加星空背景效果 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/random/1920x1080?space') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.2; /* 设置透明度，使其不那么突兀 */
+            z-index: -1; /* 置于底层 */
+            animation: starTwinkle 5s infinite; /* 星星闪烁动画 */
+        }
+
+        /* 爆炸效果的样式类，初始隐藏 */
+       .explosion {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            pointer-events: none; /* 不响应鼠标事件 */
+            animation: explode 1s ease-out; /* 爆炸动画 */
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        /* 定义爆炸动画 */
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+
+        /* 标题样式 */
+        h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            animation: glowTitle 2s infinite alternate;
+        }
+
+        /* 段落文字样式 */
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in-out;
+            text-align: center;
+        }
+
+        /* 表单样式 */
+        form {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* 标签样式 */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: white;
+        }
+
+        /* 输入框样式 */
+        input[type="text"],
+        input[type="password"] {
+            width: 250px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            outline: none;
+        }
+
+        /* 登录按钮样式 */
+        input[type="button"] {
+            background-color: rgba(0, 255, 255, 0.7);
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.3s ease-in-out;
+            animation: pulse 2s infinite;
+        }
+
+        input[type="button"]:hover {
+            transform: scale(1.1);
+        }
+
+        /* 定义标题闪烁动画 */
+        @keyframes glowTitle {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+            }
+
+            to {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+            }
+        }
+
+        /* 定义淡入动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 定义按钮脉冲动画 */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 定义星星闪烁动画 */
+        @keyframes starTwinkle {
+            0% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        /* 添加光线流动效果 */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(0, 255, 255, 0.5), rgba(0, 255, 255, 0) 50%);
+            animation: lightFlow 10s linear infinite;
+            z-index: -1;
+        }
+
+        /* 光线流动动画 */
+        @keyframes lightFlow {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h3>欢迎来到陌悠荺的神秘空间</h3>
+    <p>登录正确后即可进入神秘国度</p>
+    <form>
+        <label for="username">用户名：</label><input type="text" id="username" />
+        <br />
+        <label for="password">密码：</label><input type="password" id="password" />
+        <br />
+        <input type="button" value="登录" onclick="checkLogin()">
+    </form>
+
+    <script>
+        function checkLogin() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (username === "陌悠荺" && password === "123456") {
+                window.location.href = "123.html";
+            } else {
+                alert("用户名或密码错误，请重新输入");
+            }
+        }
+
+        // 获取页面元素
+        const bodyElement = document.body;
+        const formElement = document.querySelector('form');
+
+        // 为页面添加点击事件监听器，排除表单区域
+        bodyElement.addEventListener('click', function (event) {
+            if (!formElement.contains(event.target)) {
+                createExplosion(event.clientX, event.clientY);
+            }
+        });
+
+        // 创建爆炸效果函数
+        function createExplosion(x, y) {
+            const explosion = document.createElement('div');
+            explosion.classList.add('explosion');
+            explosion.style.left = x + 'px';
+            explosion.style.top = y + 'px';
+            document.body.appendChild(explosion);
+            setTimeout(() => {
+                explosion.remove();
+            }, 1000); // 1秒后移除爆炸元素，与动画时长匹配
+        }
+    </script>
+</body>
+
+</html>
