@@ -3,260 +3,322 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>登录页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <!-- 设置viewport，禁止用户缩放，确保页面布局稳定 -->
+    <title>陌悠荺专属网站</title>
     <style>
-        /* 整体页面背景设置为黑色，营造科幻氛围 */
+        /* 整体页面背景设置为太空的深色渐变 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: black;
-            color: white;
             margin: 0;
             padding: 0;
+            background: linear-gradient(to bottom, #000000, #0f0f39);
+            font-family: 'Arial', sans-serif; /* 设置字体 */
+            color: #ffffff; /* 文字颜色设为白色 */
+            overflow: hidden; /* 隐藏超出页面部分，避免滚动条影响视觉效果 */
+            perspective: 1000px; /* 开启3D透视效果，营造空间感 */
+            animation: backgroundAnimation 30s linear infinite; /* 背景渐变动画 */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            animation: fadeIn 1s ease-in-out;
-            position: relative;
-            overflow: hidden; /* 防止背景元素超出页面显示 */
+            /* 让页面内容在手机端垂直居中显示 */
         }
 
-        /* 添加星空背景效果 */
-        body::before {
+        /* 背景渐变动画关键帧，模拟宇宙中光线流动的效果 */
+        @keyframes backgroundAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h3 {
+            text-align: center; /* 标题居中 */
+            font-size: 36px; /* 增大标题字体 */
+            margin-top: 50px; /* 标题距顶部距离 */
+            text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff; /* 添加蓝色发光阴影，营造科幻感 */
+            animation: titleAnimation 3s ease-in-out infinite alternate; /* 标题闪烁动画 */
+        }
+
+        /* 标题闪烁动画关键帧 */
+        @keyframes titleAnimation {
+            0% {
+                text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #00bfff, 0 0 40px #00bfff;
+            }
+        }
+
+        p {
+            text-align: center; /* 段落文字居中 */
+            font-size: 20px; /* 设置段落文字大小 */
+            margin-bottom: 30px; /* 段落距下方距离 */
+            opacity: 0.8; /* 适当设置透明度，增加层次感 */
+            animation: paragraphAnimation 5s ease-in-out infinite alternate; /* 段落文字动画 */
+        }
+
+        /* 段落文字动画关键帧，模拟文字闪烁效果 */
+        @keyframes paragraphAnimation {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        a {
+            display: block; /* 让链接占一行，方便布局 */
+            text-align: center; /* 链接文字居中 */
+            text-decoration: none; /* 去除默认下划线 */
+            color: #00bfff; /* 链接文字设为浅蓝色 */
+            font-size: 24px; /* 链接文字大小 */
+            margin: 20px auto; /* 上下外边距，左右自动居中 */
+            padding: 10px 20px; /* 内边距 */
+            border: 2px solid #00bfff; /* 边框 */
+            border-radius: 10px; /* 圆角边框 */
+            transition: all 0.3s ease; /* 添加过渡效果，让交互更平滑 */
+            position: relative; /* 相对定位，方便后续做伪元素的绝对定位 */
+            overflow: hidden; /* 隐藏超出链接部分的内容 */
+            z-index: 1; /* 设置层级，确保按钮在其他效果之上 */
+            animation: buttonAnimation 3s ease-in-out infinite alternate; /* 按钮动画 */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            /* 添加淡淡的阴影，让按钮更立体 */
+        }
+
+        /* 按钮动画关键帧，模拟按钮的发光和缩放效果 */
+        @keyframes buttonAnimation {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 10px #00bfff;
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px #00bfff;
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 10px #00bfff;
+            }
+        }
+
+        a::before {
             content: "";
             position: absolute;
-            top: 0;
+            top: -100%;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://source.unsplash.com/random/1920x1080?space') no-repeat center center fixed;
-            background-size: cover;
-            opacity: 0.2; /* 设置透明度，使其不那么突兀 */
-            z-index: -1; /* 置于底层 */
-            animation: starTwinkle 5s infinite; /* 星星闪烁动画 */
+            background: linear-gradient(to bottom, rgba(0, 191, 255, 0.2), rgba(0, 191, 255, 0));
+            z-index: -1;
+            transform: skewY(10deg);
+            animation: buttonGlowAnimation 3s linear infinite; /* 按钮发光动画 */
         }
 
-        /* 爆炸效果的样式类，初始隐藏 */
-       .explosion {
+        /* 按钮发光动画关键帧，营造光线流动的效果 */
+        @keyframes buttonGlowAnimation {
+            0% {
+                top: -100%;
+            }
+
+            100% {
+                top: 100%;
+            }
+        }
+
+        a:hover {
+            background-color: rgba(0, 191, 255, 0.2); /* 鼠标悬停时背景变色 */
+            box-shadow: 0 0 10px #00bfff; /* 鼠标悬停时添加发光阴影 */
+            transform: translateY(-3px);
+            /* 鼠标悬停时按钮向上微移，增加交互感 */
+        }
+
+        /* 添加一些闪烁的星星元素，模拟宇宙中的星星 */
+      .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: starAnimation 10s linear infinite; /* 星星闪烁动画 */
+            opacity: 0.5;
+        }
+
+        /* 星星闪烁动画关键帧，让星星有随机闪烁和移动的效果 */
+        @keyframes starAnimation {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(500px) translateY(500px);
+                opacity: 0.5;
+            }
+        }
+
+        /* 新增流星元素样式及动画 */
+      .meteor {
+            position: absolute;
+            width: 10px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            transform: rotate(45deg);
+            animation: meteorAnimation 5s linear infinite;
+            opacity: 0.8;
+        }
+
+        /* 流星动画关键帧，模拟流星划过天空的效果 */
+        @keyframes meteorAnimation {
+            0% {
+                top: -100px;
+                left: -100px;
+            }
+
+            100% {
+                top: 110vh;
+                left: 110vw;
+            }
+        }
+
+        /* 新增星云元素样式及动画 */
+      .nebula {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at center, rgba(128, 0, 128, 0.5), rgba(0, 0, 0, 0));
+            border-radius: 50%;
+            animation: nebulaAnimation 20s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        /* 星云动画关键帧，模拟星云缓慢变化和移动的效果 */
+        @keyframes nebulaAnimation {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            50% {
+                transform: scale(1.2) translate(50px, -50px);
+            }
+
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+        }
+
+        /* 点击按钮后出现的特效元素样式 */
+      .click-effect {
             position: absolute;
             width: 50px;
             height: 50px;
+            background: radial-gradient(circle at center, rgba(0, 191, 255, 0.8), rgba(0, 191, 255, 0));
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            pointer-events: none; /* 不响应鼠标事件 */
-            animation: explode 1s ease-out; /* 爆炸动画 */
+            animation: clickEffectAnimation 1s ease-out;
             opacity: 0;
-            transform: scale(0);
+            pointer-events: none;
+            /* 避免特效元素影响后续交互 */
         }
 
-        /* 定义爆炸动画 */
-        @keyframes explode {
+        /* 点击按钮特效动画关键帧，模拟发光扩散后消失的效果 */
+        @keyframes clickEffectAnimation {
             0% {
-                opacity: 1;
                 transform: scale(0);
+                opacity: 0.8;
             }
+
             50% {
-                opacity: 1;
                 transform: scale(1);
+                opacity: 0.8;
             }
+
             100% {
-                opacity: 0;
                 transform: scale(2);
-            }
-        }
-
-        /* 标题样式 */
-        h3 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-            animation: glowTitle 2s infinite alternate;
-        }
-
-        /* 段落文字样式 */
-        p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            animation: fadeIn 1.5s ease-in-out;
-            text-align: center;
-        }
-
-        /* 表单样式 */
-        form {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        /* 标签样式 */
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 18px;
-            color: white;
-        }
-
-        /* 输入框样式 */
-        input[type="text"],
-        input[type="password"] {
-            width: 250px;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-            outline: none;
-        }
-
-        /* 登录按钮样式 */
-        input[type="button"] {
-            background-color: rgba(0, 255, 255, 0.7);
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            transition: transform 0.3s ease-in-out;
-            animation: pulse 2s infinite;
-        }
-
-        input[type="button"]:hover {
-            transform: scale(1.1);
-        }
-
-        /* 定义标题闪烁动画 */
-        @keyframes glowTitle {
-            from {
-                text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
-            }
-
-            to {
-                text-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
-            }
-        }
-
-        /* 定义淡入动画 */
-        @keyframes fadeIn {
-            from {
                 opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* 定义按钮脉冲动画 */
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        /* 定义星星闪烁动画 */
-        @keyframes starTwinkle {
-            0% {
-                opacity: 0.2;
-            }
-
-            50% {
-                opacity: 0.4;
-            }
-
-            100% {
-                opacity: 0.2;
-            }
-        }
-
-        /* 添加光线流动效果 */
-        body::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, rgba(0, 255, 255, 0.5), rgba(0, 255, 255, 0) 50%);
-            animation: lightFlow 10s linear infinite;
-            z-index: -1;
-        }
-
-        /* 光线流动动画 */
-        @keyframes lightFlow {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 100%;
             }
         }
     </style>
 </head>
 
 <body>
-    <h3>欢迎来到陌悠荺的神秘空间</h3>
-    <p>登录正确后即可进入神秘国度</p>
-    <form>
-        <label for="username">用户名：</label><input type="text" id="username" />
-        <br />
-        <label for="password">密码：</label><input type="password" id="password" />
-        <br />
-        <input type="button" value="登录" onclick="checkLogin()">
-    </form>
-
+    <h3>欢迎来到陌悠荺的网站</h3>
+    <p>美女小姐姐请留下，其他不送！</p>
+    <a href="biaobai.html" class="button-link">暖心语！</a>
+    <a href="123.html" class="button-link">个人介绍哦！</a>
+    <a href="suiji.html" class="button-link">来个文字旅程吧！</a>
     <script>
-        function checkLogin() {
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-            if (username === "陌悠荺" && password === "123456") {
-                window.location.href = "123.html";
-            } else {
-                alert("用户名或密码错误，请重新输入");
+        window.onload = function () {
+            const body = document.body;
+            // 创建并添加星星元素
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className ='star';
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                star.style.left = x + 'px';
+                star.style.top = y + 'px';
+                body.appendChild(star);
             }
-        }
 
-        // 获取页面元素
-        const bodyElement = document.body;
-        const formElement = document.querySelector('form');
-
-        // 为页面添加点击事件监听器，排除表单区域
-        bodyElement.addEventListener('click', function (event) {
-            if (!formElement.contains(event.target)) {
-                createExplosion(event.clientX, event.clientY);
+            // 创建并添加流星元素
+            for (let i = 0; i < 5; i++) {
+                const meteor = document.createElement('div');
+                meteor.className ='meteor';
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                meteor.style.left = x + 'px';
+                meteor.style.top = y + 'px';
+                body.appendChild(meteor);
             }
-        });
 
-        // 创建爆炸效果函数
-        function createExplosion(x, y) {
-            const explosion = document.createElement('div');
-            explosion.classList.add('explosion');
-            explosion.style.left = x + 'px';
-            explosion.style.top = y + 'px';
-            document.body.appendChild(explosion);
-            setTimeout(() => {
-                explosion.remove();
-            }, 1000); // 1秒后移除爆炸元素，与动画时长匹配
-        }
+            // 创建并添加星云元素
+            for (let i = 0; i < 3; i++) {
+                const nebula = document.createElement('div');
+                nebula.className = 'nebula';
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                nebula.style.left = x + 'px';
+                nebula.style.top = y + 'px';
+                body.appendChild(nebula);
+            }
+
+            // 为按钮添加点击特效交互
+            const links = document.querySelectorAll('.button-link');
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    const clickEffect = document.createElement('div');
+                    clickEffect.className = 'click-effect';
+                    clickEffect.style.left = e.pageX + 'px';
+                    clickEffect.style.top = e.pageY + 'px';
+                    body.appendChild(clickEffect);
+                    setTimeout(() => {
+                        clickEffect.remove();
+                    }, 1000);
+                });
+            });
+        };
     </script>
 </body>
 
