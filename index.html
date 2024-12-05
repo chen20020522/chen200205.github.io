@@ -38,10 +38,10 @@
         }
 
         /* 爆炸效果的样式类，初始隐藏 */
-       .explosion {
+      .explosion {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 30px; /* 手机端适当缩小爆炸效果元素尺寸 */
+            height: 30px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.5);
             pointer-events: none; /* 不响应鼠标事件 */
@@ -68,43 +68,48 @@
 
         /* 标题样式 */
         h3 {
-            font-size: 36px;
-            margin-bottom: 20px;
+            font-size: 24px; /* 手机端适当缩小标题字体大小 */
+            margin-bottom: 15px; /* 减少底部间距 */
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
             animation: glowTitle 2s infinite alternate;
+            text-align: center; /* 让标题在手机端居中显示更美观 */
+            width: 80%; /* 限制标题宽度，避免过长换行影响美观 */
         }
 
         /* 段落文字样式 */
         p {
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 16px; /* 手机端缩小段落字体大小 */
+            margin-bottom: 20px; /* 减少底部间距 */
             animation: fadeIn 1.5s ease-in-out;
-            text-align: center;
+            text-align: center; /* 让段落文字在手机端居中显示更美观 */
+            width: 80%; /* 限制段落宽度，避免过长换行影响美观 */
         }
 
         /* 表单样式 */
         form {
             background-color: rgba(0, 0, 0, 0.5);
-            padding: 30px;
+            padding: 20px; /* 手机端适当减小表单内边距 */
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
             animation: fadeIn 1.5s ease-in-out;
+            width: 80%; /* 让表单在手机端占一定宽度，避免过宽或过窄 */
         }
 
         /* 标签样式 */
         label {
             display: block;
             margin-bottom: 5px;
-            font-size: 18px;
+            font-size: 16px; /* 手机端缩小标签字体大小 */
             color: white;
+            text-align: left; /* 保持标签左对齐显示更清晰 */
         }
 
         /* 输入框样式 */
         input[type="text"],
         input[type="password"] {
-            width: 250px;
+            width: 100%; /* 让输入框占满表单宽度，更适配手机屏幕 */
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px; /* 减少底部间距 */
             border: none;
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.1);
@@ -126,9 +131,11 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px; /* 手机端缩小按钮字体大小 */
             transition: transform 0.3s ease-in-out;
             animation: pulse 2s infinite;
+            width: 100%; /* 让按钮占满表单宽度，视觉上更协调 */
+            margin-top: 10px; /* 增加按钮上方间距，使其与输入框区分更明显 */
         }
 
         input[type="button"]:hover {
@@ -194,7 +201,7 @@
             top: 0;
             left: -100%;
             width: 100%;
-            height: 3px;
+            height: 2px; /* 手机端适当减小光线流动元素高度 */
             background: linear-gradient(90deg, rgba(0, 255, 255, 0.5), rgba(0, 255, 255, 0) 50%);
             animation: lightFlow 10s linear infinite;
             z-index: -1;
@@ -208,6 +215,58 @@
 
             100% {
                 left: 100%;
+            }
+        }
+
+        /* 手机端样式调整，屏幕宽度小于等于768px时生效 */
+        @media (max-width: 768px) {
+            h3 {
+                font-size: 20px; /* 进一步缩小标题字体 */
+            }
+
+            p {
+                font-size: 14px; /* 进一步缩小段落字体 */
+                margin-bottom: 15px; /* 进一步减少底部间距 */
+            }
+
+            form {
+                padding: 15px; /* 进一步减小表单内边距 */
+            }
+
+            label {
+                font-size: 14px; /* 进一步缩小标签字体 */
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                margin-bottom: 10px; /* 进一步减少输入框底部间距 */
+            }
+
+            input[type="button"] {
+                padding: 8px 16px; /* 进一步调整按钮内边距 */
+            }
+        }
+
+        /* 更小屏幕尺寸优化，屏幕宽度小于等于480px时生效 */
+        @media (max-width: 480px) {
+            h3 {
+                font-size: 18px; /* 再次缩小标题字体 */
+            }
+
+            p {
+                font-size: 12px; /* 再次缩小段落字体 */
+            }
+
+            form {
+                padding: 10px; /* 再次减小表单内边距 */
+            }
+
+            label {
+                font-size: 12px; /* 再次缩小标签字体 */
+            }
+
+            input[type="button"] {
+                padding: 6px 12px; /* 再次调整按钮内边距 */
             }
         }
     </style>
